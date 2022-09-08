@@ -1,2 +1,3 @@
 #!/bin/bash
-find . -type f -empty | ls | sort 
+find -empty | rev | cut -d'\' -F1 | rev
+
