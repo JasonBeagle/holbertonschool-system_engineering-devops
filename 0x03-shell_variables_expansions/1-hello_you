@@ -1,2 +1,2 @@
 #!/bin/bash
-alias u=$user echo 'hello $u'
+alias user=id -u echo 'hello \"user\"'
