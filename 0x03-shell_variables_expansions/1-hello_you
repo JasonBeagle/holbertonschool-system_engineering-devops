@@ -1,2 +1,2 @@
 #!/bin/bash
-alias hu='whoami' echo 'hello "\hu\"'
+alias u=$user echo 'hello $u'
