@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 #prints 10 lines, line 4 containing bad luck, 8 containing good luck, the rest Best School
 count=0
-while [ $count -lt 11 ]; do
-	if [ $count -eq 4 ]
+while [ $count -lt 10 ]; do
+	if [ $count -eq 3 ]
 	then 
 		echo "bad luck"
-	elif [ $count -eq 8 ]
+	elif [ $count -eq 7 ]
 	then
 		echo "good luck"
 	else
