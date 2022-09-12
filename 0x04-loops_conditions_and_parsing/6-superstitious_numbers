@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #display number 1-20, with bad luck from China after line 4, Japan line 9, and Italy line 17
 
 counter=1
