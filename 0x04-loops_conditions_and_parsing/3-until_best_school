@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #this will print Best School 10 times
 COUNTER=0
-until [ $COUNTER -gt 10 ];
+until [ $COUNTER -gt 9 ];
 do
 	echo "Best School"
 	((COUNTER++))
