@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #This script will print Best School ten times.
 for (( c=1; c<=10; c++)); do
 	echo "Best School"
