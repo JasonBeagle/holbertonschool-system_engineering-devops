@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #prints Best School 10 time with Hi under the 9th.
 COUNTER=0
 while [ $COUNTER -lt 10 ]
@@ -10,5 +10,5 @@ do
 	else
 		echo "Best School"
 	fi
-	COUNTER=$((COUNTER + 1))
+	((COUNTER++))
 done
