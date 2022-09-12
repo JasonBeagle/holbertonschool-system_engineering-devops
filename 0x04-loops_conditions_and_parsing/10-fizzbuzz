@@ -1,9 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # script displays number 1-100
 
 number=1
-while [ $number -lt 101 ];
-do
+while [ $number -lt 101 ]; do
 	if [ $((number % 5)) == 0 ] && [ $((number % 3)) == 0 ];
 	then
 		echo "FizzBuzz"
@@ -16,5 +15,5 @@ do
 	else
 		echo $number
 	fi
-	number=$((number += 1))
+	((number++))
 done
