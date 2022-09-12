@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+#gives info about school file, exist y or n, is it empty, not and if it is regular
 school="school"
 if [ -e $school ]; then
 		echo "school file exists"
