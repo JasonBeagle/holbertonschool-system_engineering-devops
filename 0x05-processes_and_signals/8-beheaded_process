@@ -1,0 +1,3 @@
+#!/bin/bash
+#kills highlander a different way
+pkill -SIGKILL -f "7-highlander"

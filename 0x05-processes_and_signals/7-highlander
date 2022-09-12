@@ -1,0 +1,8 @@
+#!/bin/bash
+# creates loop of "To infinity and beyond" with sleep 2 in between
+while true
+do
+	echo "To infinity and beyond"
+	sleep 2
+	trap "I am invincible!!!" SIGTERM
+done

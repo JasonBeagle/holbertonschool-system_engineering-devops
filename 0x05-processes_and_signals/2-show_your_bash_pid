@@ -1,0 +1,3 @@
+#!/bin/bash
+ps -ef -aux bash
+# shellcheck disable=SC2009

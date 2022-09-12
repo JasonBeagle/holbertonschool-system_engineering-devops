@@ -1,0 +1,3 @@
+#!/bin/bash
+#displays current running processes for all users in user-oriented
+ps aux -ef
