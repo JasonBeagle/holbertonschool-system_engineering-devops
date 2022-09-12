@@ -1,5 +1,5 @@
-#!/bin/bash
-#displays "To infinity and beyond" with 
+#!/usr/bin/env bash
+#displays "To infinity and beyond" with 2 sec interval 
 while true
 do
 	echo "To infinity and beyond"
