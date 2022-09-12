@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #prints 10 lines, line 4 containing bad luck, 8 containing good luck, the rest Best School
 count=0
 while [ $count -lt 11 ]; do
@@ -11,5 +11,5 @@ while [ $count -lt 11 ]; do
 	else
 		echo "Best School"
 	fi
-	count=$((count + 1))
+	((count++))
 done
