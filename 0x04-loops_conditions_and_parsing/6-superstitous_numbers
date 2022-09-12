@@ -1,0 +1,26 @@
+#!/bin/bash
+#display number 1-20, with bad luck from China after line 4, Japan line 9, and Italy line 17
+
+counter=1
+
+while [ $counter -lt 21 ];
+do
+	case $counter in
+		4)
+			echo $counter
+			echo "bad luck from China"
+			;;
+		9)
+			echo $counter
+			echo "bad luck from Japan"
+			;;
+		17)
+			echo $counter
+			echo "bad luck from Italy"
+			;;
+		*)
+			echo $counter
+			;;
+	esac
+	counter=$((counter+=1))
+done

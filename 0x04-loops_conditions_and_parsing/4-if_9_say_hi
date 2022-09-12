@@ -1,0 +1,14 @@
+#!/bin/bash
+#prints Best School 10 time with Hi under the 9th.
+COUNTER=0
+while [ $COUNTER -lt 10 ]
+do
+	
+	if [ $COUNTER -eq 8 ]
+	then
+		echo -e "Best School\nHi"
+	else
+		echo "Best School"
+	fi
+	COUNTER=$((COUNTER + 1))
+done

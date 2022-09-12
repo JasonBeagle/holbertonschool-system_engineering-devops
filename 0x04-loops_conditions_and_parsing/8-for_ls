@@ -1,0 +1,7 @@
+#!/bin/bash
+#displays files on cwd in a list not including directory name
+
+for files in *
+do
+	echo "$files" | cut -d'-' -f2
+done

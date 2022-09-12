@@ -1,0 +1,20 @@
+#!/bin/bash
+# script displays number 1-100
+
+number=1
+while [ $number -lt 101 ];
+do
+	if [ $((number % 5)) == 0 ] && [ $((number % 3)) == 0 ];
+	then
+		echo "FizzBuzz"
+	elif [ $((number % 5)) == 0 ];
+	then
+		echo "Buzz"
+	elif [ $((number % 3)) == 0 ];
+	then
+		echo "Fizz"
+	else
+		echo $number
+	fi
+	number=$((number += 1))
+done

@@ -1,0 +1,15 @@
+#!/bin/bash
+#prints 10 lines, line 4 containing bad luck, 8 containing good luck, the rest Best School
+count=0
+while [ $count -lt 11 ]; do
+	if [ $count -eq 4 ]
+	then 
+		echo "bad luck"
+	elif [ $count -eq 8 ]
+	then
+		echo "good luck"
+	else
+		echo "Best School"
+	fi
+	count=$((count + 1))
+done
