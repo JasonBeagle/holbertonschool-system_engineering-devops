@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #This script will print Best School 10 times.
 COUNTER=0
 while [ $COUNTER -lt 10 ]
