@@ -1,3 +1,3 @@
-#!/bin/bash
-#displays pid for processes whose name contains "bash"
+#!/usr/bin/env bash
+#displays pid for processes whose name contains "bash" not using ps
 pgrep -l "bash"
