@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # creates loop of "To infinity and beyond" with sleep 2 in between
-while true; do
+while true;
+do
 	echo "To infinity and beyond"
 	sleep 2
 	trap 'echo "I am invincible!!!"' SIGTERM
