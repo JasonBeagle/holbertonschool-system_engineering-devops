@@ -1,4 +1,4 @@
 #!/usr/bin/env	bash
 #kills To infinity and beyond infinity loop
-kill "$(pgrep -f "4-to_infinity_and_beyond")"
-#kill $(ps aux | grep '4-to_infinity_and_beyond'| awk '{print $2}')
+#kill "$(pgrep -f "4-to_infinity_and_beyond")"
+kill $(ps -aux | grep '4-to_infinity_and_beyond'| awk '{print $2}')
