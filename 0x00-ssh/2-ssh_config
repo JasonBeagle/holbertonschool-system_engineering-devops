@@ -68,50 +68,51 @@ Welcome to Ubuntu 20.04.5 LTS (GNU/Linux 5.15.0-1026-aws x86_64)
  * Management:     https://landscape.canonical.com
  * Support:        https://ubuntu.com/advantage
 
-  System information as of Mon Mar 20 16:47:37 UTC 2023
+  System information as of Mon Mar 20 18:08:12 UTC 2023
 
-  System load:  0.0               Processes:             98
-  Usage of /:   8.1% of 19.20GB   Users logged in:       0
-  Memory usage: 21%               IPv4 address for eth0: 10.12.34.50
+  System load:  0.38              Processes:             98
+  Usage of /:   9.4% of 19.20GB   Users logged in:       0
+  Memory usage: 23%               IPv4 address for eth0: 10.12.34.50
   Swap usage:   0%
 
 
-0 updates can be applied immediately.
+92 updates can be applied immediately.
+68 of these updates are standard security updates.
+To see these additional updates run: apt list --upgradable
 
-
-The list of available updates is more than a week old.
-To check for new updates run: sudo apt update
 New release '22.04.2 LTS' available.
 Run 'do-release-upgrade' to upgrade to it.
 
 
-Last login: Mon Mar 20 16:43:22 2023 from 34.228.21.80
-To run a command as administrator (user "root"), use "sudo <command>".
-See "man sudo_root" for details.
-
-ubuntu@5529-web-01:~$ ls
+Last login: Mon Mar 20 18:06:46 2023 from 34.228.21.80
 ubuntu@5529-web-01:~$ ls -la
-total 32
-drwxr-xr-x 4 ubuntu ubuntu 4096 Mar 20 15:50 .
+total 36
+drwxr-xr-x 4 ubuntu ubuntu 4096 Mar 20 18:06 .
 drwxr-xr-x 3 root   root   4096 Mar 20 15:44 ..
--rw------- 1 ubuntu ubuntu  148 Mar 20 16:47 .bash_history
+-rw------- 1 ubuntu ubuntu  812 Mar 20 18:08 .bash_history
 -rw-r--r-- 1 ubuntu ubuntu  220 Feb 25  2020 .bash_logout
 -rw-r--r-- 1 ubuntu ubuntu 3771 Feb 25  2020 .bashrc
 drwx------ 2 ubuntu ubuntu 4096 Mar 20 15:47 .cache
 -rw-r--r-- 1 ubuntu ubuntu  807 Feb 25  2020 .profile
-drwx------ 2 ubuntu ubuntu 4096 Mar 20 15:44 .ssh
-ubuntu@5529-web-01:~$ cd .ssh/
+drwx------ 2 ubuntu ubuntu 4096 Mar 20 17:10 .ssh
+-rw-r--r-- 1 ubuntu ubuntu    0 Mar 20 18:06 .sudo_as_admin_successful
+-rw------- 1 ubuntu ubuntu 1259 Mar 20 18:05 .viminfo
+ubuntu@5529-web-01:~$ cd .ssh
 ubuntu@5529-web-01:~/.ssh$ ls
 authorized_keys
 ubuntu@5529-web-01:~/.ssh$ cat authorized_keys 
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC2BRB5gqPNzaoHnYlhR5X7zvmAxxHHaSqIR9qv2McDfR3X8ZZnA8gu6gRZV75crQnmNewnh4jStdNZ89bGXBjiqykU5jMcidS13+tJALKIhQhiSG41w2WYqEpGfh/s1toiFdsmOiftlrf8nDtjMSJ4YWW5HZlV81T8AcpYtDZhDq3t+ufE9wsJ+4FJ7cefTLrfAr+VH8EVxuC+wQ56xJ19Ni8C4iVQI20851Meq/geJ3m1TdxtjRLB3kK14iPk6aCvcZRAHkq4YIJ8JxfFLOzb85HHi+jWYcTKbXxdGsJ209UtdJLs8ratt7xUBU4uCaIt9O43LfkJd2xIHd5+Ydu5 hbtn_applicant_server
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC1grnyh5rOAzJOJeMa3dv+akxAfijvZeR0NhK+Bh7oGz5tANEzih+jCBDvB+sq9WcaYJj+bzDY4UyQbsBaDjzT9vMskTOURPw5/L91wXfGuJOiClKU60/eCX9B8teTKp/9xSInsXbZ11IaTMMhAmcgnYKRDgxqspwyHIxKb5uHNikeLm1AJ1/M8rCI34pzZvKXVipyPKKdiOX+pckTEu0FIQrlDgQHYL9gsa3lXrHVYOWOyKB/DHEF7jigURzPUR+6FYPwm0jQJA+bSY+Zq6oPZKWf6cQ240SvNA+FcW2gXS6RtA0slNylO21Ji6X89f7t2jjHtIZIzZLHtetxcg5SCj3DExHr86dvKiJf/Gtg5LN+TBxkxs651UOlZROrihCBPEFj8v8IsBf9KsB7I2qi+XblhZVHXZ/OHwfN+jqgtuWW+xSCUHaHjfwoV28rOtdZ7B49NJzupjtVexy6tHb7W207MjefTQUVs/RexU96bK8GsOaMIKbGGx0VHJ1q5cE= root@c745844f7466
-ubuntu@5529-web-01:~/.ssh$ cd
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDNdtrNGtTXe5Tp1EJQop8mOSAuRGLjJ6DW4PqX4wId/Kawz35ESampIqHSOTJmbQ8UlxdJuk0gAXKk3Ncle4safGYqM/VeDK3LN5iAJxf4kcaxNtS3eVxWBE5iF3FbIjOqwxw5Lf5sRa5yXxA8HfWidhbIG5TqKL922hPgsCGABIrXRlfZYeC0FEuPWdr6smOElSVvIXthRWp9cr685KdCI+COxlj1RdVsvIo+zunmLACF9PYdjB2s96Fn0ocD3c5SGLvDOFCyvDojSAOyE70ebIElnskKsDTGwfT4P6jh9OBzTyQEIS2jOaE5RQq4IB4DsMhvbjDSQrP0MdCLgwkN
+ubuntu@5529-web-01:~/.ssh$ cd ..
 ubuntu@5529-web-01:~$ pwd
 /home/ubuntu
 ubuntu@5529-web-01:~$ cd ..
-ubuntu@5529-web-01:/home$ ls
-ubuntu
+ubuntu@5529-web-01:/home$ ls -la
+total 12
+drwxr-xr-x  3 root   root   4096 Mar 20 15:44 .
+drwxr-xr-x 19 root   root   4096 Mar 20 15:44 ..
+drwxr-xr-x  4 ubuntu ubuntu 4096 Mar 20 18:06 ubuntu
 ubuntu@5529-web-01:/home$ cd ..
 ubuntu@5529-web-01:/$ ls
 bin  boot  dev  etc  home  lib  lib32  lib64  libx32  lost+found  media  mnt  opt  proc  root  run  sbin  snap  srv  sys  tmp  usr  var
@@ -141,25 +142,9 @@ cron.d                         fuse.conf             issue.net           magic.m
 cron.daily                     fwupd                 kernel              mailcap         overlayroot.local.conf  rc6.d                    sudoers.d     xdg
 cron.hourly                    gai.conf              kernel-img.conf     mailcap.order   PackageKit              rcS.d                    sysctl.conf   zsh_command_not_found 
 ubuntu@5529-web-01:/etc$ cd ssh/
-ubuntu@5529-web-01:/etc/ssh$ ls -la
-total 588
-drwxr-xr-x  4 root root   4096 Mar 20 15:44 .
-drwxr-xr-x 96 root root   4096 Mar 20 15:44 ..
--rw-------  1 root root    571 Mar 20 15:44 id_rsa.pub
--rw-r--r--  1 root root 535195 Mar 30  2022 moduli
--rw-r--r--  1 root root   1603 Mar 30  2022 ssh_config
-drwxr-xr-x  2 root root   4096 Mar 30  2022 ssh_config.d
--rw-r--r--  1 root root   3287 Dec  1 21:35 sshd_config
-drwxr-xr-x  2 root root   4096 Mar 30  2022 sshd_config.d
--rw-------  1 root root   1393 Mar 20 15:44 ssh_host_dsa_key
--rw-r--r--  1 root root    609 Mar 20 15:44 ssh_host_dsa_key.pub
--rw-------  1 root root    513 Mar 20 15:44 ssh_host_ecdsa_key
--rw-r--r--  1 root root    181 Mar 20 15:44 ssh_host_ecdsa_key.pub
--rw-------  1 root root    411 Mar 20 15:44 ssh_host_ed25519_key
--rw-r--r--  1 root root    101 Mar 20 15:44 ssh_host_ed25519_key.pub
--rw-------  1 root root   2610 Mar 20 15:44 ssh_host_rsa_key
--rw-r--r--  1 root root    573 Mar 20 15:44 ssh_host_rsa_key.pub
--rw-r--r--  1 root root    342 Dec  1 21:34 ssh_import_id
+ubuntu@5529-web-01:/etc/ssh$ ls
+id_rsa.pub  ssh_config    sshd_config    ssh_host_dsa_key      ssh_host_ecdsa_key      ssh_host_ed25519_key      ssh_host_rsa_key      ssh_import_id
+moduli      ssh_config.d  sshd_config.d  ssh_host_dsa_key.pub  ssh_host_ecdsa_key.pub  ssh_host_ed25519_key.pub  ssh_host_rsa_key.pub
 ubuntu@5529-web-01:/etc/ssh$ cat ssh_config
 
 # This is the ssh client system-wide configuration file.  See
@@ -185,7 +170,7 @@ Host *
 #   ForwardAgent no
 #   ForwardX11 no
 #   ForwardX11Trusted yes
-#   PasswordAuthentication yes
+#   PasswordAuthentication no
 #   HostbasedAuthentication no
 #   GSSAPIAuthentication no
 #   GSSAPIDelegateCredentials no
