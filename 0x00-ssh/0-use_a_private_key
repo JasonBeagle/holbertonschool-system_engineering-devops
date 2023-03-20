@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# use ssh to connect to our internet server
+ssh -i ~/.ssh/school ubuntu@13.38.98.125
