@@ -37,10 +37,8 @@ def get_employee_todos(employee_id):
         employee['name'], num_completed_tasks, total_tasks)
 
     # Add the title of completed tasks to the output string.
-    for task in completed_tasks[:-1]:
-        output += "\t" + task['title'] + '\n'
-
-    output += "\t" + completed_tasks[-1]['title']
+    task_titles = [task['title'] for task in completed_tasks]
+    output += "\n\t".join(task_titles)
 
     return output
 
