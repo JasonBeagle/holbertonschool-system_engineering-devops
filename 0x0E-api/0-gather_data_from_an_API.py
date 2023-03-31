@@ -1,74 +1,42 @@
 #!/usr/bin/python3
-
 """
-Write a Python script that, using this REST API, for a given employee ID,
-returns information about his/her TODO list progress.
+0-gather_data_from_an_API.py
 """
-
 import requests
 import sys
 
 
-USERS_API = "https://jsonplaceholder.typicode.com/users/"
-TODOS_API = "https://jsonplaceholder.typicode.com/todos"
+def get_employee_data(employee_id):
+    """Get the employee data for the given employee ID"""
+    url = "https://jsonplaceholder.typicode.com/users/{}".format(employee_id)
+    response = requests.get(url)
+    return response.json()
 
 
-def get_employee_todos(employee_id):
-    """
-    Given an employee ID, returns information about their TODO list progress.
-    """
-
-    # Fetch the employee's details from the API.
-    employee_api_url = USERS_API + str(employee_id)
-    employee_response = requests.get(employee_api_url)
-    employee = employee_response.json()
-
-    # Fetch the employee's TODO list from the API.
-    todos_api_url = TODOS_API + "?userId=" + str(employee_id)
-    todos_response = requests.get(todos_api_url)
-    todos = todos_response.json()
-
-    # Count the number of completed and total tasks.
-    completed_tasks = [todo for todo in todos if todo['completed']]
-    num_completed_tasks = len(completed_tasks)
-    total_tasks = len(todos)
-
-    # Construct the output string.
-    output = "Employee {} is done with tasks ({}/{}):\n".format(
-        employee['name'], num_completed_tasks, total_tasks)
-
-    # Add the title of completed tasks to the output string.
-    for task in completed_tasks[:-1]:
-        output += "\t{}\n".format(task['title'])
-
-    output += "\t{}".format(completed_tasks[-1]['title'])
-
-    return output
+def get_employee_tasks(employee_id):
+    """Get the employee's tasks for the given employee ID"""
+    url = "https://jsonplaceholder.typicode.com/todos?userId={}".format(employee_id)
+    response = requests.get(url)
+    return response.json()
 
 
-def main():
-    # Check if the employee ID was provided as a command-line argument.
-    if len(sys.argv) != 2:
-        print("Usage: {} EMPLOYEE_ID".format(sys.argv[0]))
-        sys.exit(1)
+def main(employee_id):
+    """Main function"""
+    employee_data = get_employee_data(employee_id)
+    tasks = get_employee_tasks(employee_id)
 
-    # Parse the employee ID.
-    try:
-        employee_id = int(sys.argv[1])
-    except ValueError:
-        print("Error: Invalid employee ID.")
-        sys.exit(1)
+    total_tasks = len(tasks)
+    completed_tasks = [task for task in tasks if task['completed']]
 
-    # Get the employee's TODO list progress.
-    try:
-        output = get_employee_todos(employee_id)
-    except requests.exceptions.RequestException:
-        print("Error: Could not fetch employee data from API.")
-        sys.exit(1)
+    print("Employee {} is done with tasks({}/{})".format(
+        employee_data['name'], len(completed_tasks), total_tasks))
 
-    # Print the output.
-    print(output)
+    for task in completed_tasks:
+        print("\t {}".format(task['title']))
 
 
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) > 1 and sys.argv[1].isdigit():
+        main(int(sys.argv[1]))
+    else:
+        print("Usage: {} employee_id".format(sys.argv[0]))
