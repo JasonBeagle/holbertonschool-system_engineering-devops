@@ -15,7 +15,8 @@ def get_employee_data(employee_id):
 
 def get_employee_tasks(employee_id):
     """Get the employee's tasks for the given employee ID"""
-    url = "https://jsonplaceholder.typicode.com/todos?userId={}".format(employee_id)
+    url = "https://jsonplaceholder.typicode.com/todos?userId={}".format(
+        employee_id)
     response = requests.get(url)
     return response.json()
 
