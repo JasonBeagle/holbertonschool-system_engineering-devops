@@ -29,7 +29,7 @@ def main(employee_id):
     total_tasks = len(tasks)
     completed_tasks = [task for task in tasks if task['completed']]
 
-    print("Employee {} is done with tasks({}/{})".format(
+    print("Employee {} is done with tasks({}/{}):".format(
         employee_data['name'], len(completed_tasks), total_tasks))
 
     for task in completed_tasks:
