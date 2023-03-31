@@ -8,6 +8,7 @@ returns information about his/her TODO list progress.
 import requests
 import sys
 
+
 USERS_API = "https://jsonplaceholder.typicode.com/users/"
 TODOS_API = "https://jsonplaceholder.typicode.com/todos"
 
@@ -33,12 +34,14 @@ def get_employee_todos(employee_id):
     total_tasks = len(todos)
 
     # Construct the output string.
-    output = "Employee {} is done with tasks({}/{}):\n".format(
+    output = "Employee {} is done with tasks ({}/{}):\n".format(
         employee['name'], num_completed_tasks, total_tasks)
 
     # Add the title of completed tasks to the output string.
-    task_titles = [task['title'] for task in completed_tasks]
-    output += "\n\t".join(task_titles)
+    for task in completed_tasks[:-1]:
+        output += "\t{}\n".format(task['title'])
+
+    output += "\t{}".format(completed_tasks[-1]['title'])
 
     return output
 
@@ -59,7 +62,7 @@ def main():
     # Get the employee's TODO list progress.
     try:
         output = get_employee_todos(employee_id)
-    except requests.exceptions.RequestException as e:
+    except requests.exceptions.RequestException:
         print("Error: Could not fetch employee data from API.")
         sys.exit(1)
 
