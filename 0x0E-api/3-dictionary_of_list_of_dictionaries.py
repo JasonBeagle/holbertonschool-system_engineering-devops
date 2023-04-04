@@ -14,28 +14,32 @@ from sys import argv
 if __name__ == "__main__":
 
     # Make requests to the user and TODO list APIs to retrieve data
-    users = requests.get('{}/users'.format(
-        'https://jsonplaceholder.typicode.com')).json()
-    tasks = requests.get(
-        '{}/todos'.format('https://jsonplaceholder.typicode.com')).json()
+    # Set verify to False to ignore SSL certificate verification
+    users = requests.get('https://jsonplaceholder.typicode.com/users',
+                         verify=False).json()
+    todo = requests.get('https://jsonplaceholder.typicode.com/todos',
+                         verify=False).json()
 
-    # Initialize an empty dictionary to store the output data
-    out = dict()
+    # Initialize dictionaries to store user and task data
+    user_dict = {}
+    usernamedict = {}
 
-    # Iterate through users, create a k/v pair in the dictionary for user ID
+    # Iterate through the retrieved user data and create a key-value pair for each user ID
+    # in the user dictionary, and store the username for each user ID in the usernamedict
     for user in users:
-        out.update({user.get('id'): []})
+        ID = user.get("id")
+        user_dict[ID] = []
+        usernamedict[ID] = user.get('username')
 
-        # Iterate through tasks and add task to dictionary matching user IDs
-        for tarea in tasks:
-            if tarea.get('userId') == user.get('id'):
-                data = {
-                        'task': tarea.get('title'),
-                        'completed': tarea.get('completed'),
-                        'username': user.get('username')
-                }
-                out.get(user.get('id')).append(data)
+    # Iterate through the retrieved task data and add task data to the user dictionary
+    for task in todo:
+        task_dict = {}
+        ID = task.get("userId")
+        task_dict['username'] = usernamedict.get(ID)
+        task_dict["task"] = task.get('title')
+        task_dict["completed"] = task.get('completed')
+        user_dict.get(ID).append(task_dict)
 
-    # Write the output dictionary to a JSON file
-    with open('todo_all_employees.json', "w") as file:
-        json.dump(out, file)
+    # Write the user dictionary to a JSON file
+    with open("todo_all_employees.json", 'w') as jsfile:
+        json.dump(user_dict, jsfile)
