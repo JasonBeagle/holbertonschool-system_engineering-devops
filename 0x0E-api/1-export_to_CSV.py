@@ -1,50 +1,32 @@
 #!/usr/bin/python3
-
-"""Python script that, using this REST API, for a given employee ID"""
-
-import requests
-import sys
+"""
+Using a REST API, for a given employee ID, returns information about their
+TODO list progress.
+"""
 import csv
+import requests
+from sys import argv
+
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1:
-        """Get the user ID from command line argument"""
-        user_id = sys.argv[1]
+    # Your code should not be executed when imported
 
-        """Construct the API URL using the user ID"""
-        url = f"https://jsonplaceholder.typicode.com/todos?userId={user_id}"
+    user_id = argv[1]
 
-        """Send a GET request to the API URL"""
-        response = requests.get(url)
+    # Make requests to the REST API to get the todo list and user information
+    todos = requests.get(
+        "http://jsonplaceholder.typicode.com/todos?userId={}".format(user_id))
+    user = requests.get(
+        "http://jsonplaceholder.typicode.com/users/{}".format(user_id))
 
-        """Check if the response is successful"""
-        if response.status_code == 200:
-            """Get the response data in JSON format"""
-            data = response.json()
-
-            """Get the name of the user from the API"""
-            user_url = f"https://jsonplaceholder.typicode.com/users/{user_id}"
-            user_response = requests.get(user_url)
-            user_data = user_response.json()
-            user_name = user_data["name"]
-
-            """Create a CSV file with the user ID as the name"""
-            filename = f"{user_id}.csv"
-            with open(filename, mode="w", newline="") as csvfile:
-                """Create a CSV writer"""
-                csvwriter = csv.writer(csvfile, delimiter=",", quotechar='"',
-                                       quoting=csv.QUOTE_MINIMAL)
-                """Write the header row"""
-                csvwriter.writerow(["USER_ID", "USERNAME",
-                                    "TASK_COMPLETED_STATUS", "TASK_TITLE"])
-                """Write each row of task data"""
-                for task in data:
-                    csvwriter.writerow([task["userId"], user_name,
-                                        task["completed"], task["title"]])
-
-            """Print a success message"""
-            print(f"Data exported to {filename}.")
-        else:
-            print(f"Error: {response.status_code}")
-    else:
-        print("Please provide a user ID as a command line argument.")
+    # Write the todo list data to a CSV file
+    with open('{}.csv'.format(user_id), "w") as output:
+        writer = csv.writer(output, delimiter=',', quoting=csv.QUOTE_ALL)
+        for tarea in todos.json():
+            data = [
+                user.json().get('id'),
+                user.json().get('username'),
+                tarea.get('completed'),
+                tarea.get('title')
+            ]
+            writer.writerow(data)
