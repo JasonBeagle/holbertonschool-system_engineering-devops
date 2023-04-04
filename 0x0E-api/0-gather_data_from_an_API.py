@@ -1,43 +1,34 @@
 #!/usr/bin/python3
-"""
-0-gather_data_from_an_API.py
-"""
+"""using a REST API, for a given employee ID, returns information about
+his/her TODO list progress"""
 import requests
-import sys
-
-
-def get_employee_data(employee_id):
-    """Get the employee data for the given employee ID"""
-    url = "https://jsonplaceholder.typicode.com/users/{}".format(employee_id)
-    response = requests.get(url)
-    return response.json()
-
-
-def get_employee_tasks(employee_id):
-    """Get the employee's tasks for the given employee ID"""
-    url = "https://jsonplaceholder.typicode.com/todos?userId={}".format(
-        employee_id)
-    response = requests.get(url)
-    return response.json()
-
-
-def main(employee_id):
-    """Main function"""
-    employee_data = get_employee_data(employee_id)
-    tasks = get_employee_tasks(employee_id)
-
-    total_tasks = len(tasks)
-    completed_tasks = [task for task in tasks if task['completed']]
-
-    print("Employee {} is done with tasks({}/{}):".format(
-        employee_data['name'], len(completed_tasks), total_tasks))
-
-    for task in completed_tasks:
-        print("\t {}".format(task['title']))
+from sys import argv
 
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1 and sys.argv[1].isdigit():
-        main(int(sys.argv[1]))
-    else:
-        print("Usage: {} employee_id".format(sys.argv[0]))
+    """Your code should not be executed when imported"""
+
+    user_id = argv[1]
+
+    todos = requests.get(
+        "http://jsonplaceholder.typicode.com/todos?userId={}".format(
+            user_id))
+    user = requests.get(
+        "http://jsonplaceholder.typicode.com/users/{}".format(
+            user_id))
+
+    if len(user.json()):
+        total = 0
+        completed = 0
+        tasks_list = []
+        for tarea in todos.json():
+            total += 1
+            if tarea.get("completed") is True:
+                completed += 1
+                tasks_list.append(tarea.get("title"))
+
+        print(
+            "Employee {} is done with tasks({}/{}):".format(
+                user.json().get("name"), completed, total))
+        for task in tasks_list:
+            print("\t {}".format(task))
