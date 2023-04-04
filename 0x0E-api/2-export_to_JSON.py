@@ -1,52 +1,42 @@
 #!/usr/bin/python3
 
-"""Python script that, using this REST API, for a given employee ID"""
+"""
+This script uses a REST API to obtain information about
+an employee's progress on their TODO list based on the employee ID,
+and exports the data in JSON format.
+"""
 
-import requests
-import sys
 import json
+import requests
+from sys import argv
 
+# Check if this module is being executed as the main program
 if __name__ == "__main__":
-    if len(sys.argv) > 1:
-        """Get the user ID from command line argument"""
-        user_id = sys.argv[1]
 
-        """Construct the API URL using the user ID"""
-        url = f"https://jsonplaceholder.typicode.com/todos?userId={user_id}"
+    # Retrieve the user ID passed in as an argument
+    user_id = argv[1]
 
-        """Send a GET request to the API URL"""
-        response = requests.get(url)
+    # Make a request to TODO list API for tasks associated with given user ID
+    todos = requests.get(
+        "http://jsonplaceholder.typicode.com/todos?userId={}".format(user_id))
 
-        """Check if the response is successful"""
-        if response.status_code == 200:
-            """Get the response data in JSON format"""
-            tasks = response.json()
+    # Make a request to user API to retrieve info about the given user ID
+    user = requests.get(
+        "http://jsonplaceholder.typicode.com/users/{}".format(user_id))
 
-            """Get the name of the user from the API"""
-            user_url = f"https://jsonplaceholder.typicode.com/users/{user_id}"
-            user_response = requests.get(user_url)
-            user_data = user_response.json()
-            user_name = user_data["name"]
+    # Initialize a dictionary with user ID as key and a empty list as the value
+    out = {user.json().get('id'): []}
 
-            """Calculate the number of completed tasks and total tasks"""
-            num_completed_tasks = 0
-            total_tasks = len(tasks)
-            completed_tasks = []
-            for task in tasks:
-                if task["completed"]:
-                    completed_tasks.append(task)
-                    num_completed_tasks += 1
+    # Open new JSON file with user ID as name and write retrieved data to it
+    with open('{}.json'.format(user_id), "w") as output:
+        # Iterate through the TODO list data and append to output dictionary
+        for tarea in todos.json():
+            data = {
+                'task': tarea.get('title'),
+                'completed': tarea.get('completed'),
+                'username': user.json().get('username')
+            }
+            out.get(user.json().get('id')).append(data)
 
-            """Create a dictionary with the required JSON format"""
-            json_tasks = {user_id: [{"task": task["title"], "completed": task["completed"], "username": user_name} for task in completed_tasks]}
-
-            """Write the dictionary to a JSON file"""
-            with open(f"{user_id}.json", "w") as json_file:
-                json.dump(json_tasks, json_file)
-
-            """Print the result"""
-            # print(f"Employee {user_name} is done with tasks ({num_completed_tasks}/{total_tasks})")
-        else:
-            print(f"Error: {response.status_code}")
-    else:
-        print("Please provide a user ID as a command line argument.")
+        # Write the output dictionary to the JSON file
+        json.dump(out, output)
