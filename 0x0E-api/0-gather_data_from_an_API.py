@@ -2,41 +2,41 @@
 """Using a REST API, for a given employee ID, returns information about
 his/her TODO list progress.
 """
+
+import json
 import requests
 from sys import argv
 
 
-if __name__ == "__main__":
-    """Your code should not be executed when imported"""
+if __name__ == '__main__':
+    employee_id = argv[1]
+    tasks_done, total_tasks = 0, 0
+    base_url = "https://jsonplaceholder.typicode.com"
 
-    # Get the employee ID from the command line argument
-    user_id = argv[1]
+    # creating response objects for employee
+    employee_response = requests.get("{}/users/{}"
+                                     .format(base_url, employee_id))
+    # creating dictionary objects for response objects
+    employee_info = employee_response.json()
 
-    # Send a GET request to the API to retrieve the todos and user information
-    todos = requests.get(
-        "http://jsonplaceholder.typicode.com/todos?userId={}".format(user_id))
-    user = requests.get(
-        "http://jsonplaceholder.typicode.com/users/{}".format(user_id))
+    # creating response objects for employee & their todo list
+    todo_response = requests.get("{}/users/{}/todos"
+                                 .format(base_url, employee_id))
+    # creating dictionary objects for response objects
+    todo_list = todo_response.json()
 
-    # Check if the user information was successfully retrieved
-    if len(user.json()):
-        # Initialize counters for total tasks and completed tasks
-        total = 0
-        completed = 0
-        # Create a list to store completed tasks
-        tasks_list = []
-        # Iterate through each task in the todos
-        for tarea in todos.json():
-            total += 1  # Increment total tasks
-            # Check if the task is completed
-            if tarea.get("completed") is True:
-                completed += 1  # Increment completed tasks counter
-                # Add task title to completed tasks list
-                tasks_list.append(tarea.get("title"))
+    # name variable placeholder
+    name = employee_info['name']
 
-        # Print employee's name and task completion information
-        print("Employee {} is done with tasks({}/{}):".format(
-            user.json().get("name"), completed, total))
-        # Iterate through each completed task and print it
-        for task in tasks_list:
-            print("\t {}".format(task))
+    # task incrementation
+    for task in todo_list:
+        total_tasks += 1
+        if task['completed']:
+            tasks_done += 1
+
+    print("Employee {} is done with tasks({}/{}):"
+          .format(name, tasks_done, total_tasks))
+
+    for task in todo_list:
+        if task['completed']:
+            print("\t {}".format(task['title']))
